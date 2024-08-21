@@ -1,0 +1,224 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Passion+One:wght@400;700;900&family=Rowdies:wght@300;400;700&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Jersey+10&family=Jersey+20&family=Kulim+Park:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&family=Spicy+Rice&display=swap');
+
+/* :root{
+    --main-color:#4A1E4F;
+    --dark-color: #A1678F;
+    --text-color:#4A1E4F;
+    --white-color:white;
+} */
+:root{
+    --main-color:#921A40;
+    --dark-color: #C75B7A;
+    --text-color:#00000;
+    --white-color:#F4D9D0;
+}
+
+body {
+    /* background: linear-gradient(180deg,#BC9AB3,#A1678F,#723768,#411a45);     */
+    background: linear-gradient(180deg,#F4D9D0,#D9ABAB,#C75B7A,#921A40);    
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh; 
+    /* font-family: "Josefin Sans", sans-serif; */
+    font-family: "Jersey 20", sans-serif;
+    margin: 0; 
+    font-optical-sizing: auto;
+    font-weight: 400;
+}
+h1{
+    font-weight: 800;
+    font-size: 40px;
+    text-align: center;
+    padding-bottom: 20px;
+    color: var(--text-color);
+}
+.registration-container {
+    margin: 30px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.74);
+    color: var(--text-color);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.094);
+    width: 100%; 
+    max-width: 350px; 
+}
+
+/* login.html */
+#loginbtn, #registerbtn {
+    /* width: 100%;  */
+    /* padding: 5px 0;  */
+    font-size: 16px; 
+    margin-top: 10px; 
+}
+label{
+    color: rgba(255, 255, 255, 0.895);
+}
+
+#loginbtn {
+    background-color: var(--main-color);
+    color: var(--white-color);
+    border: 3px solid var(--main-color);
+    font-weight: 300;
+}
+
+#registerbtn {
+    border: 3px solid var(--main-color);
+    color: var(--text-color);
+    font-weight: 300;
+}
+
+#loginbtn:hover {
+    background-color: transparent;
+    border: 3px solid var(--main-color);
+    color: var(--text-color);
+}
+
+#registerbtn:hover {
+    background-color: var(--main-color);
+    color: var(--white-color);
+}
+
+/* index.html */
+#welcomebox{
+    margin: 30px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.74);
+    color: var(--text-color);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.094);
+    width: 100%; 
+    max-width: 350px; 
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction:column;
+    align-items: center;
+    gap: 20px;
+}
+
+#takeQuizBtn{
+    background-color: var(--main-color);
+    color: var(--white-color);
+    width: fit-content;
+}
+#createQuizBtn{
+    background-color: var(--main-color);
+    color: var(--white-color);
+    width: fit-content;
+}
+#takeQuizBtn:hover {
+    background-color:transparent;
+    border: 3px solid var(--main-color);
+    color: var(--text-color);
+}
+#createQuizBtn:hover {
+    background-color:transparent;
+    border: 3px solid var(--main-color);
+    color: var(--text-color);
+}
+
+
+/* register.html */
+.register-box{
+    margin: 30px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.74);
+    color: var(--text-color);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.094);
+    width: 100%; 
+    max-width: 350px; 
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction:column;
+    align-items: center;
+    gap: 20px;
+}
+#takeQuizBtn{
+    background-color: var(--main-color);
+    color: var(--white-color);
+    width: fit-content;
+}
+#createQuizBtn{
+    background-color: var(--main-color);
+    color: var(--white-color);
+    width: fit-content;
+}
+#takeQuizBtn:hover {
+    background-color:transparent;
+    border: 3px solid var(--main-color);
+    color: var(--text-color);
+}
+#createQuizBtn:hover {
+    background-color:transparent;
+    border: 3px solid var(--main-color);
+    color: var(--text-color);
+}
+
+/* createquiz.html */
+.create-quiz{
+    margin: 30px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.74);
+    color: var(--text-color);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.094);
+    width: 100%; 
+    max-width: 350px; 
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction:column;
+    align-items: center;
+    gap: 20px;
+}
+
+.ques-box{
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* takequiz.html */
+.take-quiz{
+    margin: 30px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.74);
+    color: var(--text-color);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.094);
+    width: 100%; 
+    max-width: 350px; 
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction:column;
+    align-items: center;
+    gap: 20px;
+}
+#main-quiz-ques{
+    text-align: left;
+    color: var(--text-color);
+}
+.form-check-label{
+    color: var(--text-color);
+}
+.form-check-input{
+    color: var(--text-color);
+}
+
+#submitQuizBtn{
+    background-color: var(--main-color);
+    color: var(--white-color);
+    width: fit-content;
+}
+#submitQuizBtn:hover {
+    background-color:transparent;
+    border: 3px solid var(--main-color);
+    color: var(--text-color);
+}
+
