@@ -17,22 +17,22 @@
     </div>
 
     <script type="module">
-        // Import Firebase modules
+        
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
         import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
 
-        // Fetch Firebase configuration from server
+       
         async function getConfig() {
             const response = await fetch('/config');
             return await response.json();
         }
 
         getConfig().then(firebaseConfig => {
-            // Initialize Firebase
+          
             const app = initializeApp(firebaseConfig);
             const db = getDatabase(app);
 
-            // Fetch quiz data from Firebase and display quiz list
+          
             const quizListContainer = document.getElementById('quizListContainer');
             const quizContainer = document.getElementById('quizContainer');
             const submitQuizBtn = document.getElementById('submitQuizBtn');
@@ -65,7 +65,7 @@
                 alert('Error fetching quizzes: ' + error.message);
             });
 
-            // Load the selected quiz
+         
             function loadQuiz(quiz) {
                 quizContainer.innerHTML = '';
                 quizListContainer.classList.add('d-none');
@@ -90,7 +90,7 @@
                 });
             }
 
-            // Handle quiz submission
+           
             submitQuizBtn.addEventListener('click', () => {
                 if (!selectedQuiz) return;
 
@@ -105,7 +105,7 @@
                 showResult(correctAnswers, selectedQuiz.questions.length);
             });
 
-            // Show the result after quiz submission
+            
             function showResult(correctAnswers, totalQuestions) {
                 quizContainer.classList.add('d-none');
                 submitQuizBtn.classList.add('d-none');
