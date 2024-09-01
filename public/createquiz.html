@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+    <div class="create-quiz" style="width: max-content;">
+        <h1>Create a New Quiz</h1>
+        <form id="createQuizForm">
+            <div class="mb-4">
+                <input type="text" class="form-control" id="quizTitle" name="quizTitle" placeholder="Enter quiz title" required>
+            </div>
+            <div class="mb-3">
+                <input type="number" class="form-control" id="numQuestions" name="numQuestions" min="1" required placeholder="No. of questions">
+            </div>
+            <div id="questionsContainer"></div>
+            <button type="submit" class="btn mt-2" id="createQuizBtn">Create Quiz</button>
+        </form>
+    </div>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+
+        async function getConfig() {
+            const response = await fetch('/config');
+            return await response.json();
+        }
+
+        getConfig().then(firebaseConfig => {
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+
+            document.getElementById('numQuestions').addEventListener('change', function() {
+                const numQuestions = this.value;
+                const container = document.getElementById('questionsContainer');
+                container.innerHTML = ''; // Clear existing questions
+
+                for (let i = 1; i <= numQuestions; i++) {
+                    const questionItem = document.createElement('div');
+                    questionItem.className = 'question-item mb-4';
+                    questionItem.innerHTML = `
+                        <h5>Question ${i}</h5>
+                        <div class="ques-box">
+                            <div>
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="question${i}" name="questions[${i}][text]" placeholder="Enter the question" required>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="text" class="form-control mb-2" name="questions[${i}][options][]" placeholder="Option 1" required>
+                                    <input type="text" class="form-control mb-2" name="questions[${i}][options][]" placeholder="Option 2" required>
+                                    <input type="text" class="form-control mb-2" name="questions[${i}][options][]" placeholder="Option 3" required>
+                                    <input type="text" class="form-control mb-2" name="questions[${i}][options][]" placeholder="Option 4" required>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="answer${i}" name="questions[${i}][answer]" placeholder="Enter the correct answer" required>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(questionItem);
+                }
+            });
+
+            // Handling quiz creation
+            document.getElementById('createQuizForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const quizTitle = document.getElementById('quizTitle').value;
+                const numQuestions = document.getElementById('numQuestions').value;
+                const questions = [];
+                
+                for (let i = 1; i <= numQuestions; i++) {
+                    const questionText = document.querySelector(`[name="questions[${i}][text]"]`).value;
+                    const options = [
+                        document.querySelector(`[name="questions[${i}][options][]"]:nth-of-type(1)`).value,
+                        document.querySelector(`[name="questions[${i}][options][]"]:nth-of-type(2)`).value,
+                        document.querySelector(`[name="questions[${i}][options][]"]:nth-of-type(3)`).value,
+                        document.querySelector(`[name="questions[${i}][options][]"]:nth-of-type(4)`).value
+                    ];
+                    const answer = document.querySelector(`[name="questions[${i}][answer]"]`).value;
+                    
+                    questions.push({
+                        text: questionText,
+                        options: options,
+                        answer: answer
+                    });
+                }
+                
+                // Save quiz to Firebase Realtime Database
+                const quizzesRef = ref(db, 'quizzes');
+
+                push(quizzesRef, {
+                    title: quizTitle,
+                    questions: questions
+                }).then(() => {
+                    alert('Quiz created successfully!');
+                    window.location.href = 'index.html'; // Redirect after successful creation
+                }).catch((error) => {
+                    alert('Error creating quiz: ' + error.message);
+                });
+            });
+        }).catch(error => {
+            console.error('Error fetching Firebase config:', error);
+        });
+    </script>
+</body>
+</html>
