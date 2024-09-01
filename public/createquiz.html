@@ -23,7 +23,7 @@
     </div>
 
     <script type="module">
-        // Import Firebase modules
+        
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
         import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
 
@@ -33,15 +33,15 @@
         }
 
         getConfig().then(firebaseConfig => {
-            // Initialize Firebase
+           
             const app = initializeApp(firebaseConfig);
             const db = getDatabase(app);
 
             document.getElementById('numQuestions').addEventListener('change', function() {
                 const numQuestions = this.value;
                 const container = document.getElementById('questionsContainer');
-                container.innerHTML = ''; // Clear existing questions
-
+                container.innerHTML = ''; 
+                
                 for (let i = 1; i <= numQuestions; i++) {
                     const questionItem = document.createElement('div');
                     questionItem.className = 'question-item mb-4';
@@ -68,7 +68,7 @@
                 }
             });
 
-            // Handling quiz creation
+            
             document.getElementById('createQuizForm').addEventListener('submit', function(event) {
                 event.preventDefault();
                 
@@ -93,7 +93,6 @@
                     });
                 }
                 
-                // Save quiz to Firebase Realtime Database
                 const quizzesRef = ref(db, 'quizzes');
 
                 push(quizzesRef, {
@@ -101,7 +100,7 @@
                     questions: questions
                 }).then(() => {
                     alert('Quiz created successfully!');
-                    window.location.href = 'index.html'; // Redirect after successful creation
+                    window.location.href = 'index.html'; 
                 }).catch((error) => {
                     alert('Error creating quiz: ' + error.message);
                 });
