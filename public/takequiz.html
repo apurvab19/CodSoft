@@ -97,7 +97,7 @@
                 let correctAnswers = 0;
                 selectedQuiz.questions.forEach((question, qIndex) => {
                     const selectedOption = document.querySelector(`input[name="question${qIndex}"]:checked`);
-                    if (selectedOption && selectedOption.value === question.answer) {  // Use `question.answer` here
+                    if (selectedOption && selectedOption.value === question.answer) {  
                         correctAnswers++;
                     }
                 });
