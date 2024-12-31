@@ -1,4 +1,4 @@
-# Quiz App with Firebase Integration 🎉
+# Quiz App 📝
 A web-based application that allows users to create quizzes, take quizzes, and authenticate seamlessly. Built with Firebase for database and authentication, and Node.js for backend management.
 __________________________________________________________________________________________________________________________________________________________________________________________________
 Features ✨<br>
